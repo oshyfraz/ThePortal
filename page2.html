@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Other page</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" href="styles.css" />
+    <script type="module" src="script.js"></script>
+  </head>
+  <body>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/page2.html" aria-current="page">Other page</a>
+    </nav>
+    <main>
+      <h1>Contents of the Dishwasher</h1>
+      <h2>
+        <!-- All buttons now call the exact same fixed function name -->
+        <button type="button" onclick="loadPageAsBlank('1.20_Client.html')">1.20 Client</button>
+        <button type="button" onclick="loadPageAsBlank('1.12.2wasm.html')">1.12.2 WASM Client</button>
+        <button type="button" onclick="loadPageAsBlank('Pixel_1.12.2wasm.html')">1.12.2 WASM Pixel Client</button>
+        <button type="button" onclick="loadPageAsBlank('1.8.8wasm.html')">1.8.8 WASM Client</button>
+
+        <script>
+        function loadPageAsBlank(fileName) {
+          // 1. Open a new window pointed to about:blank
+          const win = window.open('about:blank', '_blank');
+
+          if (!win) {
+            alert('Pop-up blocked! Please allow pop-ups for this site.');
+            return;
+          }
+
+          // 2. Set the tab title explicitly to about:blank
+          win.document.title = 'about:blank';
+
+          // 3. Prevent scrollbars on the parent about:blank document body
+          win.document.body.style.margin = '0';
+          win.document.body.style.height = '100vh';
+          win.document.body.style.overflow = 'hidden';
+          win.document.body.style.backgroundColor = '#000'; // Matches Eaglercraft black loading screen
+
+          // 4. Create a full-screen iframe
+          const iframe = win.document.createElement('iframe');
+          iframe.style.width = '100%';
+          iframe.style.height = '100%';
+          iframe.style.border = 'none';
+          iframe.style.outline = 'none';
+          
+          // CRITICAL FIXED ADDITION: Allows all clients to use fullscreen and lock your mouse cursor
+          iframe.setAttribute('allow', 'fullscreen; pointer-lock');
+          
+          // 5. Build the path relative to the current folder location
+          const currentPath = window.location.pathname.substring(0, window.location.pathname.lastIndexOf('/') + 1);
+          iframe.src = window.location.origin + currentPath + fileName;
+
+          // 6. Append the iframe to the about:blank body
+          win.document.body.appendChild(iframe);
+        }
+        </script>
+      </h2>
+    </main>
+  </body>
+</html>
