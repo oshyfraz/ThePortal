@@ -136,20 +136,20 @@ button {
 }
 
 .page {
+  display: none; /* Add this to completely hide by default */
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   min-height: 100vh;
-
   opacity: 0;
   transform: translateX(50px);
   pointer-events: none;
-
   transition: opacity 0.3s ease-out, transform 0.4s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
 .page.active {
+  display: block; /* Make it visible when active */
   opacity: 1;
   transform: translateX(0);
   pointer-events: auto;
