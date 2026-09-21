@@ -3,18 +3,89 @@
   <head>
     <title>Home</title>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
+    <script src="script.js" defer></script>
   </head>
-  <body>
-    <nav>
-      <a href="index.html" aria-current="page">Home</a>
-      <a href="page2.html">Other page</a>
-    </nav>
-    <main>
+<body>
+
+    <!-- page1 -->
+    <section id="page-home" class="page active">
       <h1>Home page</h1>
-      <h2>The <u>'other page'</u> has <strong><u>cooler</u></strong> stuff.</h2>
-    </main>
+      <h2>Go to <b><u>Clients</u></b> for the various clients.</u></b></h2>
+
+      <h3>
+        <p>
+          <button type="button" class="dropdown-btn" onclick="toggleInfo(document.getElementById('infoPanel'), this)">
+           Client Information ▼
+           </button>
+          <div id="infoPanel" class="info-content">
+            <p> • <strong>1.8.8 WASM</strong> is the original version, it runs best but lacks the offhand slot.</p>
+            <p> • <strong>1.12.2 WASM</strong> is the newer version, it runs ever-so-slightly worse but has an offhand slot.</p>
+            <p> • <strong>Pixel Client</strong> is a version of 1.12.2 that supposedly runs better than the normal WASM version.</p>
+          </div>
+        </p>
+        <p>
+          <button type="button" class="dropdown-btn" onclick="toggleInfo(document.getElementById('infoPanel2'), this)">
+            Recommendations ▼
+          </button>
+          <div id="infoPanel2" class="info-content" class="scroll-box">
+            <p>
+              • For your video settings, 
+            <p>&emsp; Turn <b>VSync: Off</b>,</p>
+            <p>&emsp; Set <b>Clouds: Fast or Off</b>,</p> 
+            <p>&emsp; Set <b>Particles: Decreased or Minimum</b>,</p>
+            <p>&emsp; Set <b>Max FPS: 120</b>,</p>
+            <p>&emsp; Set <b>Render Distance: 4 Chunks</b></p>
+            </p>
+            <p>
+              • Avoiding Keyboard Rollover:
+              <p>&emsp; Set <b>Jump</b> Keybind to <b>V</b>,</p>
+              <p>&emsp; Turn <b>Auto Jump: Off</b>,</p>
+              <p>&emsp; Set <b>Sprint</b> keybind to <b>Ctrl or Shift</b>,</p>
+            <p>&emsp; Set <b>Crouch</b> keybind to <b>Ctrl or Shift.</b>.</p>
+            </p>
+          </div>
+        </p>
+      </h3>
+        <footer>
+          <button type="button" onclick="navigateTo('page-clients')">Go to Clients</button>
+          <button type="button" onclick="navigateTo('page-credits')">Go to Credits</button>
+    </section>
+
+    <!-- page2 -->
+    <section id="page-clients" class="page">
+      <h1>Contents of the Dishwasher</h1>
+      <h2>
+        <label for="clientSelect">Choose a client:</label>
+        <select id="clientSelect" onchange="loadPageAsBlank(this.value)">
+            <option value="" disabled selected>-- Select a Client --</option>
+            <option value="1.12.2wasm.html">1.12.2 WASM Client</option>
+            <option value="Pixel_1.12.2wasm.html">1.12.2 WASM Pixel Client</option>
+            <option value="1.8.8wasm.html">1.8.8 WASM Client</option>
+        </select>
+      </h2>
+      <footer>
+        <button type="button" onclick="navigateTo('page-home')">Back to Home</button>
+        <button type="button" onclick="navigateTo('page-credits')">Go to Credits</button>
+       </footer>
+    </section>
+
+    <!-- Page3 -->
+    <section id="page-credits" class="page">
+      <h1>Credits</h1>
+      <h2>
+        <p>
+          • Me.
+        </p>
+        <p>
+          • Lax1Dude for the Original Client.
+        </p>
+      </h2>
+      <footer>
+        <button type="button" onclick="navigateTo('page-home')">Back to Home</button>
+        <button type="button" onclick="navigateTo('page-clients')">Go to Clients</button>
+      </footer>
+    </section>
   </body>
 </html>
